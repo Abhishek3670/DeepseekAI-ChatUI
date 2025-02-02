@@ -201,7 +201,7 @@ class ChatApp:
 
 if __name__ == '__main__':
     # Configuration
-    MODEL_PATH = r"C:\Users\Abhishek\.ollama\models\manifests\registry.ollama.ai\library\deepseek-r1\7b"
+    MODEL_PATH = r"C:\Users\%USERNAME%\.ollama\models\manifests\registry.ollama.ai\library\deepseek-r1\7b"
     UPLOAD_FOLDER = Path('uploads')
     
     # Initialize and run application
