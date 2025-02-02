@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat {{ chat_id }}</title>
+    <!-- Include necessary CSS and JS files -->
+</head>
+<body>
+    <h1>Chat {{ chat_id }}</h1>
+    <div id="chat-history">
+        <!-- Display chat history -->
+        {% for message in chat_history %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+    <form id="send-message-form" method="post" action="/send_message">
+        <input type="hidden" name="chat_id" value="{{ chat_id }}">
+        <input type="text" name="message" placeholder="Type your message">
+        <button type="submit">Send</button>
+    </form>
+    <form id="upload-attachment-form" method="post" action="/upload_attachment" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <button type="submit">Upload</button>
+    </form>
+</body>
+</html>
