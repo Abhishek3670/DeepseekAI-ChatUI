@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify, session
+from flask import Flask, render_template, request, jsonify, session
 import os
 from werkzeug.utils import secure_filename
 from datetime import datetime
@@ -6,6 +6,7 @@ import logging
 from typing import Optional, Dict, List
 from dataclasses import dataclass
 from pathlib import Path
+from ollama_client import OllamaClient  # Import OllamaClient
 
 # Data structure for chat messages
 @dataclass
@@ -49,7 +50,7 @@ class ChatApp:
     def _initialize_model(self, model_path: str):
         """Initialize the Deepseek-R1 model with error handling."""
         try:
-            return load_model(model_path)
+            return OllamaClient(model_path)  # Use OllamaClient
         except Exception as e:
             self.logger.error(f"Model initialization failed: {str(e)}")
             raise RuntimeError(f"Failed to load model: {str(e)}")
@@ -201,7 +202,7 @@ class ChatApp:
 
 if __name__ == '__main__':
     # Configuration
-    MODEL_PATH = r"C:\Users\%USERNAME%\.ollama\models\manifests\registry.ollama.ai\library\deepseek-r1\7b"
+    MODEL_PATH = r"C:\Users\Abhishek\.ollama\models\manifests\registry.ollama.ai\library\deepseek-r1\7b"
     UPLOAD_FOLDER = Path('uploads')
     
     # Initialize and run application
